@@ -114,9 +114,7 @@ for (j in c(1:length(Exposure_data_sets))) {
     # check MR methods
     # command -----> TwoSampleMR::mr_method_list()
     #View(mr_method_list())
-    
-    # which methods would you like to use? how do you change this?
-    # command -----> mr(dat,parameters = default_parameters(),method_list = subset(mr_method_list(), use_by_default)$obj)
+
     basicMR <- TwoSampleMR::mr(datMRHarm,method_list = subset(mr_method_list(), obj=="mr_ivw")$obj)
    
     if (i==1 & j==1) {
@@ -124,15 +122,6 @@ for (j in c(1:length(Exposure_data_sets))) {
     } else {
       basicMR_result <- rbind(basicMR_result,basicMR)
     }
-    # View Results; good for a table in supplementary
-    # command -----> basicMR
-    # which methods were used here? why? what makes them different?
-    
-    # do a leave-one-out analysis to check for SNPs which dominate the model
-    #loo <- TwoSampleMR::mr_singlesnp(datMRHarm)
-    # view results
-    # command -----> loo
-    # so you can make tables out of those
     
     # scatterplot
     if (basicMR$pval*45<0.05) {
@@ -164,7 +153,7 @@ for (j in c(1:length(Exposure_data_sets))) {
 
     # now some other analyses:
 
-    # # plieotropy (testing the interept of the MR Egger method)
+    # plieotropy (testing the interept of the MR Egger method)
     plt<-mr_pleiotropy_test(datMRHarm)
 
     if (i==1 & j==1) {
@@ -172,7 +161,7 @@ for (j in c(1:length(Exposure_data_sets))) {
     } else {
       plieotropy_result <- rbind(plieotropy_result,plt)
     }
-    #
+    
     # heterogenity
     het<-mr_heterogeneity(datMRHarm)
 
