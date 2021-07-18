@@ -1,3 +1,5 @@
+# file_list,Exposure_list,Outcome_list were come from the MR.R script
+
 Exposure_data_sets <- file_list[file_list %in% Exposure_list$traits]
 Outcome_data_sets <- file_list[!(file_list %in% Exposure_list$traits)]
 
